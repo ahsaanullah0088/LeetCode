@@ -10,6 +10,5 @@ while (i < n and j < 2 * n) {
     i++, j++;
 }
 return ans;
-
     }
 };
