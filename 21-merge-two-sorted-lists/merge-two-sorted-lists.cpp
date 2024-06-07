@@ -22,8 +22,8 @@ public:
             return list1;
         }
 
-        ListNode* dummy = new ListNode(-1);
-        ListNode* tail = dummy;
+        ListNode* mergedList = new ListNode(-1);
+        ListNode* tail = mergedList;
 
         while (list1 && list2)
         {
@@ -50,8 +50,8 @@ public:
             }
         }
 
-        ListNode* mergedList = dummy->next;
-        delete dummy;
-        return mergedList;
+        ListNode* dummy = mergedList->next;
+        delete mergedList;
+        return dummy;
     }
 };
