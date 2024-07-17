@@ -1,23 +1,18 @@
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
     int numIdenticalPairs(vector<int>& nums) {
-        int count[102] = {0}; // Initialize the count array with zeros
         
-        // Count occurrences of each number
-        for (int num : nums) {
-            count[num]++;
+        int n = nums.size();
+        int ans = 0;
+
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++){
+                if(nums[i]==nums[j]){
+                    ans++;
+                }
+            }
         }
-        
-        int totalCount = 0;
-        
-        // Calculate total count of identical pairs
-        for (int i : count) {
-            totalCount += (i * (i - 1)) / 2;
-        }
-        
-        return totalCount;
+
+        return ans;
     }
 };
