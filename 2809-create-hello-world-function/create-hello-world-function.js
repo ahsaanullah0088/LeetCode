@@ -1,6 +1,14 @@
-function createHelloWorld(){
-    function f(){
-        return "Hello World";
+/**
+ * @return {Function}
+ */
+var createHelloWorld = function() {
+    
+    return function(...args) {
+        return "Hello World"
     }
-    return f;
-}
+};
+
+/**
+ * const f = createHelloWorld();
+ * f(); // "Hello World"
+ */
