@@ -1,14 +1,19 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> mp;
-        for(int i=0; i<nums.size(); i++){
-            int complement = target - nums[i];
-            if(mp.find(complement)!= mp.end()){
-                return {mp[complement] , i};
+        int n = nums.size();
+        vector<int> output;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] + nums[j] == target) {
+                    output.push_back(i);
+                    output.push_back(j);
+                    return output; // Return immediately once a solution is found
+                }
             }
-            mp.insert({nums[i] , i});
         }
-        return {};
+        
+        return output; // Will be empty if no solution is found
     }
 };
