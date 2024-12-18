@@ -3,27 +3,24 @@
 
 class Solution {
 public:
-    std::string reverseVowels(std::string s) {
-        int n = s.length();
-        int f = 0;
-        int e = n - 1;
-        while (f < e) {
-            while (f < e && !isVowel(s[f])) {
-                f++;
+bool checkVovels(char c){
+    return(c=='a' || c=='e' || c=='i' || c=='o' || c=='u'|| c=='A'|| c=='E'|| c=='I'|| c=='O'|| c=='U');
+}
+    string reverseVowels(string s) {
+        int left =0, right = s.size()-1;
+        while(left< right){
+            if(! checkVovels(s[left])){
+                left ++;
             }
-            while (f < e && !isVowel(s[e])) {
-                e--;
+            else if(! checkVovels(s[right])){
+                right --;
             }
-            std::swap(s[f], s[e]);
-            f++;
-            e--;
+            else{
+                swap(s[left] , s[right]);
+                left ++;
+                right--;
+            }
         }
         return s;
-    }
-
-private:
-    bool isVowel(char c) {
-        c = std::tolower(c);
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }
 };
