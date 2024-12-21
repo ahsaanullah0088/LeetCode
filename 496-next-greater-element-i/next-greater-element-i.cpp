@@ -1,24 +1,19 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        unordered_map<int, int> map; // Map to store the next greater element for each number in nums2
-        stack<int> stack; // Stack to find the next greater elements
-
-        // Iterate through nums2
-        for (int element : nums2) {
-            // While stack is not empty and the current element is greater than the top of the stack
-            while (!stack.empty() && stack.top() < element) {
-                map[stack.top()] = element; // Map the top of the stack to the current element
-                stack.pop(); // Remove the element from the stack
+        vector<int> res(nums1.size()); // Result vector
+        for (int i = 0; i < nums1.size(); i++) {
+            bool found = false; // Reset found for each nums1 element
+            res[i] = -1;        // Default value if no greater element is found
+            for (int j = 0; j < nums2.size(); j++) {
+                if (nums1[i] == nums2[j]) {
+                    found = true; // Start searching for the next greater element
+                }
+                if (found && nums2[j] > nums1[i]) {
+                    res[i] = nums2[j]; // Update result with the next greater element
+                    break; // Exit the loop once the next greater element is found
+                }
             }
-            stack.push(element); // Push the current element onto the stack
-        }
-
-        // Fill the result for nums1
-        vector<int> res(nums1.size());
-        for (int i = 0; i < nums1.size(); ++i) {
-            // If the element exists in the map, get its value; otherwise, -1
-            res[i] = map.count(nums1[i]) ? map[nums1[i]] : -1;
         }
         return res;
     }
