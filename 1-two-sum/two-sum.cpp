@@ -1,19 +1,16 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        int n = nums.size();
-        vector<int> output;
-        
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
+        vector<int> res; // Initialize as empty
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i + 1; j < nums.size(); j++) { // Start j from i+1 to avoid duplicates
                 if (nums[i] + nums[j] == target) {
-                    output.push_back(i);
-                    output.push_back(j);
-                    return output; // Return immediately once a solution is found
+                    res.push_back(i);
+                    res.push_back(j);
+                    return res; // Return immediately after finding the pair
                 }
             }
         }
-        
-        return output; // Will be empty if no solution is found
+        return res; // Return empty if no pair is found
     }
 };
