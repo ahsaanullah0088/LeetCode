@@ -1,16 +1,14 @@
 class Solution {
 public:
     int finalValueAfterOperations(vector<string>& operations) {
-        int a=0;
-
-        for(auto arr:operations){
-            if(arr=="--X"||arr=="X--"){
-                --a;
-            }
-            else{
-                ++a;
+        int ans=0; 
+        for(auto x : operations){
+            if(x=="--X" || x=="X--"){
+                ans--;
+            }else{
+                ans++;
             }
         }
-        return a;
+        return ans;
     }
 };
