@@ -1,14 +1,14 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] == nums[i - 1]) {
+        unordered_set<int> hashedset;
+        for(int i=0; i<nums.size();i++){
+            if(hashedset.find(nums[i])!=hashedset.end()){
                 return true;
+            }else{
+                hashedset.insert(nums[i]);
             }
         }
-        
-        return false;        
+        return false;
     }
 };
