@@ -1,20 +1,23 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> res(nums1.size()); // Result vector
-        for (int i = 0; i < nums1.size(); i++) {
-            bool found = false; // Reset found for each nums1 element
-            res[i] = -1;        // Default value if no greater element is found
-            for (int j = 0; j < nums2.size(); j++) {
-                if (nums1[i] == nums2[j]) {
-                    found = true; // Start searching for the next greater element
+        unordered_map<int, int> numsmap;
+        for( int i=0; i<nums1.size(); ++i){
+            numsmap[nums1[i]] = i;
+        }
+        vector<int>res(nums1.size(), -1);
+            for( int i=0; i<nums2.size(); i++){
+                if(numsmap.find(nums2[i]) ==numsmap.end()){
+                    continue;
                 }
-                if (found && nums2[j] > nums1[i]) {
-                    res[i] = nums2[j]; // Update result with the next greater element
-                    break; // Exit the loop once the next greater element is found
+                for( int j=i+1; j<nums2.size();j++){
+                    if(nums2[j]>nums2[i]){
+                        int idx = numsmap[nums2[i]];
+                        res[idx] = nums2[j];
+                        break;
+                    }
                 }
             }
-        }
         return res;
     }
 };
