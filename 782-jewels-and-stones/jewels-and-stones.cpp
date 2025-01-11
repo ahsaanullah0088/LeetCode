@@ -1,13 +1,19 @@
 class Solution {
 public:
     int numJewelsInStones(string jewels, string stones) {
-        int n=0;
-        for(int i=0; i<stones.size(); i++){
-            char c=stones[i];
-            if(jewels.find(c)!=-1){
-                n++;
-            }
+    unordered_set<char> jewelSet;
+    for (char jewel : jewels) {
+        jewelSet.insert(jewel);
+    }
+
+    // Find total score/value
+    int score = 0;
+    for (char stone : stones) {
+        if (jewelSet.count(stone)) {
+            score++;
         }
-        return n;
+    }
+
+    return score;
     }
 };
