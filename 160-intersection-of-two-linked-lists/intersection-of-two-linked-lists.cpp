@@ -9,18 +9,26 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(!headA || !headB){
-            return nullptr;
+         unordered_set<ListNode*> visited;
+        
+        // Traverse the first linked list and store each node in the set
+        ListNode* currentA = headA;
+        while (currentA) {
+            visited.insert(currentA);
+            currentA = currentA->next;
         }
-
-        ListNode *ptrA = headA;
-        ListNode *ptrB = headB;
-
-        while(ptrA != ptrB){
-            ptrA = ptrA ? ptrA->next : headB;
-            ptrB = ptrB ? ptrB->next : headA;
+        
+        // Traverse the second linked list
+        ListNode* currentB = headB;
+        while (currentB) {
+            // If the node is already in the set, it's the intersection
+            if (visited.count(currentB)) {
+                return currentB;
+            }
+            currentB = currentB->next;
         }
-        return ptrB;
-
+        
+        // No intersection found
+        return nullptr;
     }
 };
