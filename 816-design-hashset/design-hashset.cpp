@@ -3,7 +3,7 @@ public:
     vector<int> arr; // Initialize the vector
 
     MyHashSet() {
-        arr.assign(1000001, -1); // Initialize all elements to -1
+        arr.resize(1000001, -1); // Initialize all elements to -1
     }
     
     void add(int key) {
