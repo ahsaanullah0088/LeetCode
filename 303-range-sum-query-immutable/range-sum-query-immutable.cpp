@@ -10,8 +10,11 @@ public:
     }
 
     int sumRange(int left, int right) {
-        return left == 0 ? prefixSum[right] : prefixSum[right] - prefixSum[left - 1];
-    }
+if (left == 0) {
+            return prefixSum[right];
+        } else {
+            return prefixSum[right] - prefixSum[left - 1];
+        }    }
 };
 
 /**
