@@ -1,3 +1,6 @@
+#include <stack>
+using namespace std;
+
 class MyQueue {
 public:
     stack<int> s1, s2;  // Two stacks for implementing queue
