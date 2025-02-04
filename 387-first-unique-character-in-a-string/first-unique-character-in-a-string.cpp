@@ -1,30 +1,20 @@
-#include <iostream>
-#include <queue>
-#include <unordered_map>
-
-using namespace std;
-
 class Solution {
 public:
     int firstUniqChar(string s) {
-        unordered_map<char, int> freq; // Frequency map
-        queue<int> q; // Queue to store character indices
-
-        // Count frequencies and store indices in queue
-        for (int i = 0; i < s.size(); i++) {
-            freq[s[i]]++;
+        unordered_map <char, int> map;
+        queue<int> q;
+        for( int i=0; i<s.size(); i++){
+            map[s[i]]++;
             q.push(i);
         }
 
-        // Find the first unique character
-        while (!q.empty()) {
+        while(!q.empty()){
             int index = q.front();
-            if (freq[s[index]] == 1) {
-                return index; // Found the first unique character
+            if(map[s[index]]==1){
+                return index;
             }
-            q.pop(); // Remove non-unique characters
+            q.pop();
         }
-
-        return -1; // No unique character found
+        return -1;
     }
 };
