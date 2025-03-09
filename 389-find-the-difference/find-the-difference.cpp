@@ -1,25 +1,19 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        unordered_map<char, int> map;
+        int sumS = 0, sumT = 0;
 
-        // Count frequency of each character in s
+        // Calculate the sum of ASCII values of characters in s
         for (char c : s) {
-            map[c]++;
+            sumS += c;
         }
 
-        // Check characters in t
+        // Calculate the sum of ASCII values of characters in t
         for (char c : t) {
-            if (map.find(c) == map.end() || map[c] == 0) {
-                // Character not found or frequency exhausted
-                return c;
-            } else {
-                // Decrement frequency
-                map[c]--;
-            }
+            sumT += c;
         }
 
-        // This line will never be reached as per the problem statement
-        return '\0';
+        // The difference is the ASCII value of the extra character
+        return static_cast<char>(sumT - sumS);
     }
 };
